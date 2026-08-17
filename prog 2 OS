@@ -1,0 +1,177 @@
+#output 1
+#!/bin/bash
+echo "ENTER THE VALUE OF A:"
+read a
+echo "ENTER THE VALUE OF B:"
+read b
+echo "ENTER THE OPTION TO PERFORM"
+echo "1. ADDITION"
+echo "2. SUBTRACTION"
+echo "3. MULTIPLICATION"
+echo "4. DIVISION"
+read op
+case "$op" in
+ 1) echo "Result = $((a + b))" ;;
+ 2) echo "Result = $((a - b))" ;;
+ 3) echo "Result = $((a * b))" ;;
+ 4) echo "Result = $((a / b))" ;;
+ *) echo "Invalid Option" ;;
+esac
+
+#output 2
+#!/bin/bash
+echo "ENTER THE NUMBER:"
+read n
+fact=1
+while [ $n -gt 1 ]
+do
+ fact=$((fact * n))
+ n=$((n - 1))
+done
+echo "FACTORIAL OF THE GIVEN NUMBER IS $fact"
+
+#output3
+#!/bin/bash
+echo "ENTER THE LIMIT:"
+read n
+p=-1
+q=1
+i=1
+while [ $i -le $n ]
+do
+ r=$((p + q))
+ p=$q
+ q=$r
+ echo "$r"
+ i=$((i + 1))
+done
+
+#output 4
+#!/bin/bash
+echo "ENTER THREE NUMBERS"
+read a b c
+if [ $a -gt $b ] && [ $a -gt $c ]
+then
+ echo "$a is greater"
+elif [ $b -gt $c ]
+then
+ echo "$b is greater"
+else
+ echo "$c is greater"
+fi
+
+#output 5
+#!/bin/bash
+echo "ENTER THE NUMBER"
+read a
+max=0
+while [ $a -gt 0 ]
+do
+ r=$((a % 10))
+ if [ $r -gt $max ]
+ then
+ max=$r
+ fi
+ a=$((a / 10))
+done
+echo "THE LARGEST DIGIT OF THE NUMBER: $max"
+
+#output 6
+#!/bin/bash
+echo "ENTER THE RANGE:"
+read n
+x=1
+sum=0
+while [ $x -le $n ]
+do
+ sum=$((sum + x))
+ x=$((x + 2))
+done
+echo "SUM = $sum"
+
+#output 7
+$ bash greatest.sh
+ENTER THREE NUMBERS
+12 45 23
+45 is greater
+
+$ bash factorial.sh
+ENTER THE NUMBER:
+5
+FACTORIAL OF THE GIVEN NUMBER IS 120
+
+$ bash oddsum.sh
+ENTER THE RANGE:
+10
+SUM = 25
+
+$ bash fibonacci.sh
+ENTER THE LIMIT:
+5
+0
+1
+1
+2
+3
+
+$ bash calculator.sh
+ENTER THE VALUE OF A:
+10
+ENTER THE VALUE OF B:
+5
+ENTER THE OPTION TO PERFORM
+1. ADDITION
+2. SUBTRACTION
+3. MULTIPLICATION
+4. DIVISION
+3
+Result = 50
+
+$ bash largestdigit.sh
+ENTER THE NUMBER
+38291
+THE LARGEST DIGIT OF THE NUMBER: 9
+
+$ bash palindrome.sh
+ENTER THE STRING TO CHECK PALINDROME
+radar
+radar is a palindrome
+
+$ bash reverse.sh
+ENTER THE NUMBER
+12345
+REVERSE OF THE NUMBER IS 54321
+
+#output 8
+#!/bin/bash
+echo "ENTER THE STRING TO CHECK PALINDROME"
+read str
+len=$(echo -n "$str" | wc -c)
+i=1
+j=$((len / 2))
+while [ $i -le $j ]
+do
+ k=$(echo "$str" | cut -c $i)
+ l=$(echo "$str" | cut -c $len)
+ if [ "$k" != "$l" ]
+ then
+ echo "$str is not a palindrome"
+ exit
+ fi
+ i=$((i + 1))
+ len=$((len - 1))
+done
+echo "$str is a palindrome"
+
+#output 9
+#!/bin/bash
+echo "ENTER THE NUMBER"
+read n
+rnum=0
+while [ $n -ne 0 ]
+do
+ remainder=$((n % 10))
+ rnum=$((rnum * 10 + remainder))
+ n=$((n / 10))
+done
+echo "REVERSE OF THE NUMBER IS $rnum"
